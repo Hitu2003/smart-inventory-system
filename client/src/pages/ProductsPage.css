@@ -1,0 +1,60 @@
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-thumb {
+  width: 40px; height: 40px;
+  border-radius: var(--radius);
+  background: var(--bg-hover);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.product-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.product-name-link {
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.product-name-link:hover { color: var(--primary-light); }
+
+.sku-code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  background: var(--bg-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.stock-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+}
