@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import { getMe } from './redux/slices/authSlice';
 import { setTheme } from './redux/slices/uiSlice';
+import './styles/mobile.css';
+import './i18n';
 
 // Layout
 import Layout from './components/layout/Layout';
@@ -22,6 +24,7 @@ import UsersPage from './pages/UsersPage';
 import ProfilePage from './pages/ProfilePage';
 import CustomersPage from './pages/CustomersPage';
 import AuditLogPage from './pages/AuditLogPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Protected Route
@@ -85,6 +88,7 @@ function App() {
           <Route path="transactions" element={<TransactionsPage />} />
           <Route path="customers" element={<CustomersPage />} />
           <Route path="reports" element={<ReportsPage />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="users" element={<ProtectedRoute roles={['admin']}><UsersPage /></ProtectedRoute>} />
           <Route path="audit-log" element={<ProtectedRoute roles={['admin']}><AuditLogPage /></ProtectedRoute>} />
           <Route path="profile" element={<ProfilePage />} />

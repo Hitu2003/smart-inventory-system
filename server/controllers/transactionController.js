@@ -8,6 +8,7 @@ const {
   sendEmail, invoiceEmailHTML, paymentConfirmationEmailHTML,
   paymentReminderEmailHTML, newPurchaseEmailHTML,
 } = require('../utils/sendEmail');
+const { sendWhatsApp, messages: waMessages } = require('../services/whatsappService');
 const logger = require('../utils/logger');
 
 // ── Helper: send email silently (never breaks main flow) ──────────────────
@@ -135,18 +136,23 @@ exports.createTransaction = async (req, res, next) => {
       .populate('supplier', 'name code email phone')
       .populate('createdBy', 'name email');
 
-    // ── AUTO-SEND EMAILS ─────────────────────────────────────────────────
+    // ── AUTO-SEND EMAILS & WHATSAPP ─────────────────────────────────────
     if (populated.type === 'sale') {
       const customerEmail = req.body.customer?.email;
+      const customerPhone = req.body.customer?.phone;
 
-      // Send invoice/bill to customer
+      // Email invoice to customer
       if (customerEmail) {
         await silentEmail({
           email: customerEmail,
           subject: `🧾 Invoice #${populated.transactionNumber} — ${populated.paymentStatus === 'paid' ? 'Payment Received' : 'Payment Due'}`,
           html: invoiceEmailHTML(populated),
         });
-        logger.info(`Invoice email sent to customer: ${customerEmail}`);
+      }
+
+      // WhatsApp to customer
+      if (customerPhone) {
+        await sendWhatsApp(customerPhone, waMessages.orderConfirmation(populated));
       }
 
       // Notify admin about new sale

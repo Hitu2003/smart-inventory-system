@@ -3,7 +3,8 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   FiGrid, FiBox, FiTag, FiTruck, FiRepeat,
-  FiBarChart2, FiUsers, FiSettings, FiLogOut, FiUserCheck, FiShield,
+  FiBarChart2, FiUsers, FiSettings, FiLogOut,
+  FiUserCheck, FiShield, FiActivity,
 } from 'react-icons/fi';
 import { MdInventory } from 'react-icons/md';
 import { logout } from '../../redux/slices/authSlice';
@@ -30,6 +31,7 @@ const navSections = [
       { to: '/transactions', icon: <FiRepeat />, label: 'Transactions' },
       { to: '/customers', icon: <FiUserCheck />, label: 'Customers' },
       { to: '/reports', icon: <FiBarChart2 />, label: 'Reports' },
+      { to: '/analytics', icon: <FiActivity />, label: 'Analytics' },
     ],
   },
   {

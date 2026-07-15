@@ -5,6 +5,7 @@ import { FiBell, FiSun, FiMoon, FiSearch, FiCheck, FiMenu, FiX } from 'react-ico
 import { toggleSidebar, toggleTheme } from '../../redux/slices/uiSlice';
 import { fetchNotifications, markAsRead, markAllAsRead } from '../../redux/slices/notificationSlice';
 import { formatDistanceToNow } from 'date-fns';
+import LanguageSwitcher from '../common/LanguageSwitcher';
 import api from '../../services/api';
 import './Layout.css';
 
@@ -221,6 +222,9 @@ const Header = () => {
         <button className="toggle-btn" onClick={() => dispatch(toggleTheme())} data-tooltip={theme === 'dark' ? 'Light mode' : 'Dark mode'}>
           {theme === 'dark' ? <FiSun size={15} /> : <FiMoon size={15} />}
         </button>
+
+        {/* Language Switcher */}
+        <LanguageSwitcher compact />
 
         {/* Notifications */}
         <div className="notification-btn" ref={notifRef}>

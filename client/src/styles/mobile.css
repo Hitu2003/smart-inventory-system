@@ -1,0 +1,151 @@
+/* ===== MOBILE RESPONSIVE — SmartInventory Pro ===== */
+
+/* ── Hamburger Menu ──────────────────────────────── */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 150;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Bottom Nav (mobile) ─────────────────────────── */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  z-index: 200;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.6rem;
+  font-weight: 500;
+  transition: var(--transition);
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 52px;
+}
+
+.mobile-nav-item.active { color: var(--primary-light); }
+.mobile-nav-item svg { font-size: 1.1rem; }
+
+/* ── Responsive Tables ───────────────────────────── */
+@media (max-width: 768px) {
+  /* Table cards on mobile */
+  .table-responsive-card .table thead { display: none; }
+  .table-responsive-card .table tr {
+    display: block;
+    margin-bottom: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+  }
+  .table-responsive-card .table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border: none;
+    font-size: 0.82rem;
+  }
+  .table-responsive-card .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Cards grid */
+  .stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .charts-grid { grid-template-columns: 1fr !important; }
+  .dashboard-bottom { grid-template-columns: 1fr !important; }
+  .analytics-grid { grid-template-columns: 1fr !important; }
+
+  /* Page content padding */
+  .page-content { padding: 12px 12px 80px !important; }
+
+  /* Modal full screen on mobile */
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+    max-height: 92vh !important;
+    max-width: 100% !important;
+  }
+
+  /* Sidebar hidden on mobile */
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.mobile-open { transform: translateX(0); box-shadow: var(--shadow-lg); }
+  .mobile-overlay { display: block; }
+  .main-content { margin-left: 0 !important; }
+  .header { left: 0 !important; }
+
+  /* Show bottom nav */
+  .mobile-bottom-nav { display: flex; }
+
+  /* Form rows single column */
+  .form-row, .form-row-3 { grid-template-columns: 1fr !important; }
+
+  /* Hide header search on mobile */
+  .header-search-wrapper { display: none; }
+
+  /* Stat cards */
+  .stat-value { font-size: 1.3rem !important; }
+  .stat-card { padding: 14px !important; }
+
+  /* Page header */
+  .page-header { flex-direction: column; gap: 10px; }
+  .page-title { font-size: 1.2rem; }
+
+  /* Pagination */
+  .pagination { flex-direction: column; align-items: center; gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .demo-buttons { grid-template-columns: 1fr !important; }
+  .auth-container { padding: 0 !important; border-radius: 0 !important; }
+  .auth-card { padding: 24px 16px !important; }
+  .auth-side { display: none !important; }
+
+  /* Filters stack */
+  .filters-row { flex-direction: column !important; }
+  .filters-row > * { width: 100% !important; }
+
+  /* Table horizontal scroll */
+  .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+/* ── Touch-friendly buttons ──────────────────────── */
+@media (hover: none) {
+  .btn { min-height: 44px; }
+  .btn-sm { min-height: 36px; }
+  .form-control { min-height: 44px; font-size: 16px; } /* prevents iOS zoom */
+  .nav-item { min-height: 44px; }
+}
+
+/* ── Print styles ────────────────────────────────── */
+@media print {
+  .sidebar, .header, .mobile-bottom-nav,
+  .btn, .pagination, .page-header .btn { display: none !important; }
+  .main-content { margin-left: 0 !important; }
+  .page-content { margin-top: 0 !important; padding: 0 !important; }
+  .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+}

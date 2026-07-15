@@ -30,6 +30,7 @@ const userRoutes = require('./routes/userRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const auditLogRoutes = require('./routes/auditLogRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 // Connect to DB
 connectDB();
@@ -95,6 +96,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/audit-logs', auditLogRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
